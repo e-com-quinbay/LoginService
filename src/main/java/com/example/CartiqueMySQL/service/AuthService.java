@@ -33,7 +33,7 @@ public class AuthService {
     }
 
 
-    public Boolean signup(Client client)
+    public Client signup(Client client)
     {
 
         List<Client> checkRegister=clientRepository.findByEmail(client.getEmail());
@@ -44,9 +44,12 @@ public class AuthService {
             client.setPassword(hashPassword);
 
             Client newClient = clientRepository.save(client);
-            return  true;
+
+            return newClient;
         }
-        return  false;
+        else {
+            return null;
+        }
     }
 
 }

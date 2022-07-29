@@ -15,12 +15,6 @@ public class AuthController {
     @Autowired
     AuthService authService;
 
-//    @GetMapping
-//    public boolean loginAuth(@RequestParam String email,@RequestParam String password)
-//    {
-//        return authService.loginAuth(email,password);
-//    }
-
 
     @PostMapping(value="/login")
     public Client login(@RequestBody Client client)
@@ -32,10 +26,9 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String register(@RequestBody Client client)
+    public Client register(@RequestBody Client client)
     {
         System.out.print("trigerred");
-        authService.signup(client);
-        return "arun";
+        return authService.signup(client);
     }
 }
