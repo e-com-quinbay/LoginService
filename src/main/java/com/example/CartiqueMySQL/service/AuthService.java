@@ -18,6 +18,9 @@ public class AuthService {
 
     public Client login( String email, String password)
     {
+        if(email.length() == 0 || password.length()==0)
+            return null;
+
         List<Client> getUser = clientRepository.findByEmail(email);
 
         if (getUser.size() > 0) {
@@ -35,6 +38,9 @@ public class AuthService {
 
     public Client signup(Client client)
     {
+        if(client.getName().length() == 0 || client.getPassword().length()==0 || client.getEmail().length()==0 ||
+                client.getGender().length() == 0 || client.getMobile()<999999999)
+            return null;
 
         List<Client> checkRegister=clientRepository.findByEmail(client.getEmail());
         if(checkRegister.size()==0) {
