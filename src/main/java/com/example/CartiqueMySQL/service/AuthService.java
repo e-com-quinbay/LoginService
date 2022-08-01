@@ -38,8 +38,7 @@ public class AuthService {
 
     public Client signup(Client client)
     {
-        if(client.getName().length() == 0 || client.getPassword().length()==0 || client.getEmail().length()==0 ||
-                client.getGender().length() == 0 || client.getMobile()<999999999)
+        if (!isValid(client))
             return null;
 
         List<Client> checkRegister=clientRepository.findByEmail(client.getEmail());
@@ -56,6 +55,23 @@ public class AuthService {
         else {
             return null;
         }
+    }
+
+    public boolean isValid(Client client)
+    {
+        if (client.getMobile()<=999999999 || client.getEmail().length()==0 || client.getGender().length()==0 ||
+                client.getPassword().length()<8 || client.getName().length()==0 )
+            return false;
+
+        String email = client.getEmail();
+        String password = client.getPassword();
+
+        if(email.length()==0 || !email.contains("@") || !email.contains("."))
+            return false;
+
+
+        return true;
+
     }
 
 }

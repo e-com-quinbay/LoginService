@@ -19,7 +19,6 @@ public class AuthController {
     @PostMapping(value="/login")
     public Client login(@RequestBody Client client)
     {
-        System.out.println("reojefc");
         String email = client.getEmail();
         String password = client.getPassword();
         return authService.login(email,password);
@@ -28,7 +27,6 @@ public class AuthController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public Client register(@RequestBody Client client)
     {
-        System.out.print("trigerred");
         return authService.signup(client);
     }
 }
